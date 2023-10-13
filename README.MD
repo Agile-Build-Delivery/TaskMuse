@@ -1,6 +1,6 @@
 # TaskMuse: Android Task Management Application (PRE-RELEASE)
 
-[![Gradle Build](https://github.com/psavarmattas/TaskMuse/actions/workflows/gradle_build.yaml/badge.svg?branch=main)](https://github.com/psavarmattas/TaskMuse/actions/workflows/gradle_build.yaml)
+[![Gradle Build](https://github.com/Agile-Build-Delivery/TaskMuse/actions/workflows/gradle_build.yaml/badge.svg)](https://github.com/Agile-Build-Delivery/TaskMuse/actions/workflows/gradle_build.yaml)
 
 ## Overview
 
