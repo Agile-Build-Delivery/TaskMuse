@@ -54,7 +54,7 @@ TaskMuse offers a range of features tailored to the needs of software developers
 
 ## Version History
 
-### v1.0.0
+### v1.0.0 [UNDER DEVELOPMENT]
 
 - initial release
 
