@@ -1,7 +1,6 @@
 # TaskMuse: Android Task Management Application (PRE-RELEASE)
 
-[![Gradle Build](https://github.com/Agile-Build-Delivery/TaskMuse/actions/workflows/gradle_build.yaml/badge.svg)](https://github.com/Agile-Build-Delivery/TaskMuse/actions/workflows/gradle_build.yaml)
-
+[![Gradle Build](https://github.com/Agile-Build-Delivery/TaskMuse/actions/workflows/gradle_build.yaml/badge.svg?branch=main)](https://github.com/Agile-Build-Delivery/TaskMuse/actions/workflows/gradle_build.yaml)
 ## Overview
 
 TaskMuse is an Android application designed to facilitate efficient task management for software development projects. It provides software developers and project managers with a user-friendly platform to create, organize, and track tasks, ensuring smoother project workflows and enhanced collaboration within development teams.
