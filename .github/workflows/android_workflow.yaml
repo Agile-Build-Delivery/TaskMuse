@@ -81,11 +81,15 @@ jobs:
         with:
           name: app-debug
 
-      - name: Login to Google Cloud
-        uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - id: auth
+        uses: google-github-actions/auth@v1
         with:
-          version: '270.0.0'
-          service_account_key: ${{ secrets.GCLOUD_AUTH }}
+          credentials_json: ${{ secrets.GCLOUD_AUTH }}
+
+      - name: Login to Google Cloud
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          version: '>= 363.0.0'
 
       - name: Set current project
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
