@@ -47,6 +47,12 @@ jobs:
           name: Package
           path: build/libs
 
+      - name: Create google-services.json
+        uses: jsdaniell/create-json@v1.2.2
+        with:
+          name: "app/src/google-services.json"
+          json: ${{ secrets.FIREBASE_JSON }}
+
       - name: Assemble app APK (debug)
         run: ./gradlew assembleDebug
 
