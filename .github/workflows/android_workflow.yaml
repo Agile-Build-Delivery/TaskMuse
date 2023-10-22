@@ -73,13 +73,8 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCLOUD_AUTH }}
 
-      - name: Use Google Cloud
+      - name: Use Google Cloud & Run Robo Tests in Firebase Test Lab
         uses: google-github-actions/setup-gcloud@v1
         with:
           version: '>= 363.0.0'
-
-      - name: Set current project
-        run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
-
-      - name: Run Robo Tests in Firebase Test Lab
         run: gcloud firebase test android run --type robo --app app-debug/app-debug.apk --device model=Pixel8Pro,version=34,locale=ga_IE,orientation=portrait --timeout 300s
