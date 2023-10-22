@@ -7,7 +7,7 @@ on:
     branches: ['*']
 
 jobs:
-  name: Gradle Build
+  name: Gradle_Build
   build:
     runs-on: ubuntu-latest
 
@@ -40,7 +40,7 @@ jobs:
         run: ./gradlew build
 
 gradleTest:
-  name: Gradle Test
+  name: Gradle_Test
   needs: jobs
   build:
     runs-on: ubuntu-latest
@@ -76,7 +76,7 @@ gradleTest:
           path: build/libs
 
 apk:
-  name: Generate APK
+  name: Generate_APK
   needs: gradleTest
   build:
     runs-on: ubuntu-latest
@@ -92,7 +92,7 @@ apk:
           path: app/build/outputs/apk/debug/app-debug.apk
 
 firebase:
-  name: Run tests with Firebase Test Lab
+  name: Firebase_Test_Lab
   needs: apk
   runs-on: ubuntu-latest
 
