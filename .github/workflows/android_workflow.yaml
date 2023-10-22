@@ -94,4 +94,4 @@ jobs:
         uses: google-github-actions/setup-gcloud@v1
 
       - name: Run Robo Tests in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app app-debug/app-debug.apk --device model=husky,version=34,locale=ga_IE,orientation=portrait --timeout 5m
+        run: gcloud firebase test android run --type robo --app /home/runner/work/TaskMuse/TaskMuse/app-debug/app-debug.apk --device model=husky,version=34,locale=ga_IE,orientation=portrait --timeout 5m
