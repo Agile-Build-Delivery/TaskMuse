@@ -38,8 +38,25 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Test Java Code
+        run: ./gradlew test
+
+      - name: Validate Gradle Wrapper
+        uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
+
+      - name: Run the Gradle packageRelease task
+        uses: gradle/gradle-build-action@749f47bda3e44aa060e82d7b3ef7e40d953bd629
+        with:
+          arguments: packageRelease
+          cache-disabled: false
+          cache-read-only: true
+          cache-write-only: false
+          gradle-home-cache-includes: caches
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.8-1/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.8-1/x64
+          GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
+          GRADLE_BUILD_ACTION_CACHE_RESTORED: true
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
@@ -75,11 +92,6 @@ jobs:
 
       - name: Use Google Cloud
         uses: google-github-actions/setup-gcloud@v1
-        with:
-          version: '>= 363.0.0'
-
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
 
       - name: Run Robo Tests in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app app-debug/app-debug.apk --device model=Pixel8Pro,version=34,locale=ga_IE,orientation=portrait --timeout 300s
+        run: gcloud firebase test android run --type robo --app app-debug/app-debug.apk --device model=husky,version=34,locale=ga_IE,orientation=portrait --timeout 5m
