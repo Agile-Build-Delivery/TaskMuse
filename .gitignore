@@ -5,7 +5,7 @@
 /.idea/libraries
 
 # Local configuration file (sdk path, etc)
-/local.properties
+local.properties
 
 # Gradle files
 /app/build
