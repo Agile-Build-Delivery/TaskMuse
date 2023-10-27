@@ -1,0 +1,16 @@
+# IntelliJ
+*.iml
+/.idea/workspace.xml
+/.idea/shelf/
+/.idea/libraries
+
+# Local configuration file (sdk path, etc)
+/local.properties
+
+# Gradle files
+/app/build
+.gradle
+.DS_Store
+
+# Log/OS Files
+*.log
