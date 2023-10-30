@@ -14,3 +14,5 @@ local.properties
 
 # Log/OS Files
 *.log
+
+/app/google-services.json
