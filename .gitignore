@@ -9,10 +9,10 @@ local.properties
 
 # Gradle files
 /app/build
-.gradle
+/.gradle
 .DS_Store
 
 # Log/OS Files
 *.log
 
-#/app/google-services.json
+/app/src/google-services.json
