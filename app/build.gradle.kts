@@ -56,12 +56,4 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore")
     implementation ("com.google.firebase:firebase-database")
 
-    // REST API Libraries
-    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
-
-    implementation ("com.caverock:androidsvg:1.4")
-
-
 }

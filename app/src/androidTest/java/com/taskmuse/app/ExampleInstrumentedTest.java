@@ -1,4 +1,4 @@
-package com.example.taskmuse;
+package com.taskmuse.app;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.taskmuse", appContext.getPackageName());
+        assertEquals("com.taskmuse.app", appContext.getPackageName());
     }
 }
