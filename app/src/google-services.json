@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "416385410700-cl238a1t1vhgtsbmo6i4tb1pi89g9i3a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.taskmuse.app",
+            "certificate_hash": "2bf3a644db3bb0cf9da79ce0e913a6ac059ae92d"
+          }
+        },
+        {
           "client_id": "416385410700-l9qvb06isbul5c5c9fb9osacaju50fet.apps.googleusercontent.com",
           "client_type": 3
         }
