@@ -15,4 +15,4 @@ local.properties
 # Log/OS Files
 *.log
 
-/app/google-services.json
+#/app/google-services.json
