@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.SignupActivity.SignupActivity"
+    android:theme="@style/Theme.TaskMuse">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        style="@style/NunitoFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="352dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Register"
+        android:textColor="#2f80ed"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        style="@style/NunitoFont"
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullNameEditText" />
+
+    <EditText
+        android:id="@+id/fullNameEditText"
+        style="@style/NunitoFont"
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="420dp"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Full Name"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        style="@style/NunitoFont"
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText" />
+
+    <Button
+        android:id="@+id/registerButton"
+        style="@style/NunitoFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="112dp"
+        android:background="@drawable/custom_button_background"
+        android:cursorVisible="true"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="Register"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24dp"
+        app:cornerRadius="7px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        app:strokeColor="#FFFFFF" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
