@@ -17,13 +17,13 @@
         style="@style/NunitoFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="352dp"
+        android:layout_marginTop="340dp"
         android:fontFamily="@font/nunito_bold"
         android:text="Register"
         android:textColor="#2f80ed"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.105"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,12 +44,12 @@
         style="@style/NunitoFont"
         android:layout_width="320dp"
         android:layout_height="61dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="412dp"
         android:fontFamily="@font/nunito_regular"
         android:hint="Full Name"
         android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -71,7 +71,7 @@
         style="@style/NunitoFont"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="756dp"
         android:background="@drawable/custom_button_background"
         android:cursorVisible="true"
         android:fontFamily="@font/nunito_semi_bold"
@@ -80,10 +80,33 @@
         android:textSize="24dp"
         app:cornerRadius="7px"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.796"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordEditText"
+        app:layout_constraintTop_toTopOf="@+id/include"
         app:strokeColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/loginLink"
+        android:layout_width="294dp"
+        android:layout_height="23dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="656dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:cursorVisible="true"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:onClick="onLoginLinkClick"
+        android:text="Already Member? Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#2f80ed"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+    />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
