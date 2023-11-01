@@ -22,7 +22,6 @@ import android.widget.Toast;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.widget.TextView;
 
 import com.taskmuse.app.utils.ValidationUtils;
 
@@ -33,8 +32,6 @@ public class SignupActivity extends AppCompatActivity {
     private EditText emailEditText;
     private EditText passwordEditText;
     private Button signupButton;
-    private TextView loginLink;
-
     private static final String TAG = "SignupActivity";
 
     @Override
@@ -49,7 +46,6 @@ public class SignupActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         signupButton = findViewById(R.id.registerButton);
-        loginLink = findViewById(R.id.loginLink);
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,12 +110,6 @@ public class SignupActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    public void onLoginLinkClick(View view) {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish(); // Optional, to finish the current activity
     }
 
     private void showSuccessDialog() {
