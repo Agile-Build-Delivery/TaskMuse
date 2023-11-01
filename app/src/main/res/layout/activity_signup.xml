@@ -95,7 +95,6 @@
         android:clickable="true"
         android:cursorVisible="true"
         android:fontFamily="@font/nunito_semi_bold"
-        android:onClick="onLoginLinkClick"
         android:text="Already Member? Login"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#2f80ed"
