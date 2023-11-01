@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">TaskMuse</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="already_member_link">Already Member? &lt;b&gt;Login&lt;/b&gt;</string>
+
+
 </resources>
