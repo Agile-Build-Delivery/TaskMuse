@@ -45,7 +45,7 @@ jobs:
         uses: gradle/wrapper-validation-action@ccb4328a959376b642e027874838f60f8e596de3
 
       - name: Run the Gradle packageRelease task
-      - uses: actions/setup-java@v3
+        uses: actions/setup-java@v3
         with:
           arguments: packageRelease
           cache-disabled: false
