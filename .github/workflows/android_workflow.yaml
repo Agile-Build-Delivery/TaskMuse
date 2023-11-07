@@ -21,10 +21,11 @@ jobs:
           json: ${{ secrets.FIREBASE_JSON }}
 
       - name: Set up JDK 17
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
-          java-version: 17
+          java-version: '17'
           distribution: 'adopt'
+          cache: gradle
 
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
@@ -52,7 +53,7 @@ jobs:
           cache-write-only: false
           gradle-home-cache-includes: caches
         env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.1-1/x64
+          JAVA_HOME: /usr/lib/jvm/adoptopenjdk-17-hotspot-amd64
           JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.1-1/x64
           GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
           GRADLE_BUILD_ACTION_CACHE_RESTORED: true
