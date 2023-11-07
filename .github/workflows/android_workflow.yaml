@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Create google-services.json
         uses: jsdaniell/create-json@v1.2.2
@@ -24,14 +24,8 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: gradle
-
-      - name: Set JAVA_HOME
-        run: echo "JAVA_HOME=$(dirname $(dirname $(readlink -f $(which java))))" >> $GITHUB_ENV
-
-      - name: Verify JAVA_HOME
-        run: echo $JAVA_HOME
 
       - name: Set up Gradle
         uses: gradle/gradle-build-action@v2
@@ -59,18 +53,18 @@ jobs:
           cache-write-only: false
           gradle-home-cache-includes: caches
         env:
-          JAVA_HOME: /usr/lib/jvm/adoptopenjdk-17-hotspot-amd64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.1-1/x64
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.8-1/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.8-1/x64
           GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
           GRADLE_BUILD_ACTION_CACHE_RESTORED: true
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: Package
           path: build/libs
 
-      - name: Create google-services.json (Again)
+      - name: Create google-services.json
         uses: jsdaniell/create-json@v1.2.2
         with:
           name: "app/src/google-services.json"
