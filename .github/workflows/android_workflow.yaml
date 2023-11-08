@@ -53,8 +53,8 @@ jobs:
           cache-write-only: false
           gradle-home-cache-includes: caches
         env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.8-1/x64
-          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.8-1/x64
+          JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
+          JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.9-9/x64
           GRADLE_BUILD_ACTION_SETUP_COMPLETED: true
           GRADLE_BUILD_ACTION_CACHE_RESTORED: true
 
