@@ -1,4 +1,4 @@
-package com.example.taskmuse;
+package com.taskmuse.app;
 
 import org.junit.Test;
 
