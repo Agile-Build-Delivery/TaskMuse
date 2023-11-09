@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.SignupFragment"
+    android:theme="@style/Theme.TaskMuse"
+    android:id="@+id/fragment_container"
+    >
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/common_background"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <TextView
+        style="@style/NunitoFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="340dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="Register"
+        android:textColor="@color/md_theme_light_primary"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.085"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/emailEditText"
+        style="@style/NunitoFont"
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:backgroundTint="@color/md_theme_dark_inversePrimary"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fullNameEditText" />
+
+    <EditText
+        android:id="@+id/fullNameEditText"
+        style="@style/NunitoFont"
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="412dp"
+        android:backgroundTint="@color/md_theme_dark_inversePrimary"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Full Name"
+        android:textAlignment="viewStart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/passwordEditText"
+        style="@style/NunitoFont"
+        android:layout_width="320dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="4dp"
+        android:backgroundTint="@color/md_theme_dark_inversePrimary"
+        android:fontFamily="@font/nunito_regular"
+        android:hint="Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.251"
+        app:layout_constraintStart_toStartOf="@+id/include"
+        app:layout_constraintTop_toBottomOf="@id/emailEditText" />
+
+    <Button
+        android:id="@+id/registerButton"
+        style="@style/NunitoFont"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="756dp"
+        android:background="@drawable/custom_button_background"
+        android:cursorVisible="true"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="Register"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24dp"
+        app:cornerRadius="7px"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/include"
+        app:strokeColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/loginLink"
+        android:layout_width="294dp"
+        android:layout_height="23dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="656dp"
+        android:layout_marginBottom="50dp"
+        android:clickable="true"
+        android:cursorVisible="true"
+        android:fontFamily="@font/nunito_semi_bold"
+        android:text="Already Member? Login"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="#2f80ed"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.213"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
+    />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
