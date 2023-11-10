@@ -73,6 +73,12 @@ jobs:
       - name: Assemble app APK (debug)
         run: ./gradlew assembleDebug
 
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk
+          path: /home/runner/work/TaskMuse/TaskMuse/app/build/outputs/apk/debug/app-debug.apk
+
       - id: auth
         name: Authentication in Google Cloud
         uses: google-github-actions/auth@v1

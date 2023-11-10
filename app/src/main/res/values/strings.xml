@@ -1,5 +1,15 @@
 <resources>
     <string name="app_name">TaskMuse</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="login_text">LOGIN</string>
+    <string name="login_page_image_text">Login Page</string>
+    <string name="forgot_password_login_view">Forgot Password?</string>
+    <string name="new_here_register_button_on_login_view">New Here? Register!</string>
+    <string name="alreadyUser_button_on_register_view">New Here? Register!</string>
+    <string name="reset_password">Forget Password</string>
+    <string name="error">Error!</string>
+    <string name="register">Register</string>
+    <string name="fullName">Full Name</string>
 </resources>
