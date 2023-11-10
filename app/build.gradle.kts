@@ -5,11 +5,9 @@ plugins {
 
 android {
     namespace = "com.taskmuse.app"
-    namespace = "com.taskmuse.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.taskmuse.app"
         applicationId = "com.taskmuse.app"
         minSdk = 24
         targetSdk = 33
