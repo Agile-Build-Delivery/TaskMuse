@@ -57,4 +57,11 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(null) // Name can be null
                 .commit();
     }
+    public void redirectToDashboard(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, Login_Fragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+    }
 }
