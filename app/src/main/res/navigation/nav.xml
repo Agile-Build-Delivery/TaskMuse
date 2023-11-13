@@ -10,12 +10,34 @@
         android:id="@+id/login_Fragment"
         android:name="com.taskmuse.app.ui.fragment.authentication.Login_Fragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_login_Fragment_to_forgetPasswordNoAccessFragment"
+            app:destination="@id/forgetPasswordNoAccessFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/signupFragment"
         android:name="com.taskmuse.app.ui.fragment.authentication.SignupFragment"
-        android:label="SignupFragment" />
+        android:label="SignupFragment" >
+        <action
+            android:id="@+id/action_signupFragment_to_login_Fragment"
+            app:destination="@id/login_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgetPasswordNoAccessFragment"
+        android:name="com.taskmuse.app.ui.fragment.authentication.ForgetPasswordNoAccessFragment"
+        android:label="fragment_forget_password_no_access"
+        tools:layout="@layout/fragment_forget_password_no_access" />
+    <fragment
+        android:id="@+id/forgotPasswordHasAccessFragment"
+        android:name="com.taskmuse.app.ui.fragment.authentication.ForgotPasswordHasAccessFragment"
+        android:label="fragment_forgot_password_has_access"
+        tools:layout="@layout/fragment_forgot_password_has_access" >
+        <action
+            android:id="@+id/action_forgotPasswordHasAccessFragment_to_login_Fragment"
+            app:destination="@id/login_Fragment" />
+    </fragment>
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.taskmuse.app.ui.fragment.dashboard.dashboard"

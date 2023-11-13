@@ -5,9 +5,12 @@ import androidx.fragment.app.FragmentManager;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.fragment.authentication.ForgetPasswordNoAccessFragment;
+import com.taskmuse.app.ui.fragment.authentication.ForgotPasswordHasAccessFragment;
 import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.authentication.Login_Fragment;
 import com.taskmuse.app.ui.fragment.dashboard.dashboard;
@@ -57,6 +60,31 @@ public class MainActivity extends AppCompatActivity {
                 .setReorderingAllowed(true)
                 .addToBackStack(null) // Name can be null
                 .commit();
+    }
+    public void goToLoginFragment(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, Login_Fragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null) // Name can be null
+                .commit();
+    }
+    public void goToForgotPassword(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, ForgotPasswordHasAccessFragment.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null) // Name can be null
+                    .commit();
+        } else {
+            // No user is signed in
+            fragmentManager.beginTransaction()
+                    .replace(R.id.fragmentContainerView, ForgetPasswordNoAccessFragment.class, null)
+                    .setReorderingAllowed(true)
+                    .addToBackStack(null) // Name can be null
+                    .commit();
+        }
     }
     public void redirectToDashboard(){
         fragmentManager.beginTransaction()

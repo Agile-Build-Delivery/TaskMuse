@@ -7,10 +7,11 @@
     <string name="login_page_image_text">Login Page</string>
     <string name="forgot_password_login_view">Forgot Password?</string>
     <string name="new_here_register_button_on_login_view">New Here? Register!</string>
-    <string name="alreadyUser_button_on_register_view">New Here? Register!</string>
+    <string name="alreadyUser_button_on_register_view">Already a member? Login!</string>
     <string name="reset_password">Forget Password</string>
     <string name="error">Error!</string>
     <string name="register">Register</string>
     <string name="fullName">Full Name</string>
+    <string name="reset_pass_btn">CONFIRM</string>
     <string name="boardText">Board</string>
 </resources>
