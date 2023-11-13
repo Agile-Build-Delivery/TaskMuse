@@ -126,9 +126,8 @@ public class Login_Fragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-            //TODO: USE THIS CODE TO MOVE TO MAIN PAGE AFTER SUCCESSFUL LOGIN
                 assert mainActivity != null;
-                mainActivity.alreadyUser();
+                mainActivity.redirectToDashboard();
             }
         });
 
