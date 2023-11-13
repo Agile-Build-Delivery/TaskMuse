@@ -13,6 +13,7 @@ import com.taskmuse.app.ui.fragment.authentication.ForgetPasswordNoAccessFragmen
 import com.taskmuse.app.ui.fragment.authentication.ForgotPasswordHasAccessFragment;
 import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.authentication.Login_Fragment;
+import com.taskmuse.app.ui.fragment.dashboard.dashboard;
 
 import android.os.Bundle;
 
@@ -84,5 +85,12 @@ public class MainActivity extends AppCompatActivity {
                     .addToBackStack(null) // Name can be null
                     .commit();
         }
+    }
+    public void redirectToDashboard(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, dashboard.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
     }
 }

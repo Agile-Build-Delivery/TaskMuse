@@ -13,4 +13,5 @@
     <string name="register">Register</string>
     <string name="fullName">Full Name</string>
     <string name="reset_pass_btn">CONFIRM</string>
+    <string name="boardText">Board</string>
 </resources>

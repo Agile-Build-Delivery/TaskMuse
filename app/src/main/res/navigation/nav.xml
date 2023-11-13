@@ -38,6 +38,10 @@
             android:id="@+id/action_forgotPasswordHasAccessFragment_to_login_Fragment"
             app:destination="@id/login_Fragment" />
     </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.taskmuse.app.ui.fragment.dashboard.dashboard"
+        android:label="DashboardFragment"/>
 
 
 </navigation>
