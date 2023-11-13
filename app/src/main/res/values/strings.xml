@@ -14,4 +14,6 @@
     <string name="fullName">Full Name</string>
     <string name="reset_pass_btn">CONFIRM</string>
     <string name="boardText">Board</string>
+    <string name="nav_open">Open</string>
+    <string name="nav_close">Close</string>
 </resources>

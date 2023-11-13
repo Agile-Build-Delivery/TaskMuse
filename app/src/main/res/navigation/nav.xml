@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
@@ -14,6 +15,9 @@
         <action
             android:id="@+id/action_login_Fragment_to_forgetPasswordNoAccessFragment"
             app:destination="@id/forgetPasswordNoAccessFragment" />
+        <action
+            android:id="@+id/action_login_Fragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 
     <fragment
@@ -41,7 +45,14 @@
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.taskmuse.app.ui.fragment.dashboard.dashboard"
-        android:label="DashboardFragment"/>
+        android:label="DashboardFragment">
+        <action
+            android:id="@+id/action_dashboardFragment_to_login_Fragment"
+            app:destination="@id/login_Fragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_signupFragment"
+            app:destination="@id/signupFragment" />
+    </fragment>
 
 
 </navigation>
