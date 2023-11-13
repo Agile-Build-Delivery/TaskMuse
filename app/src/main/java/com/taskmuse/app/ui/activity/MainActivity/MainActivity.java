@@ -33,15 +33,17 @@ public class MainActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance(); // Access a Cloud Firestore instance from your Activity
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this); // // Obtain the FirebaseAnalytics instance.
 
-        if (savedInstanceState == null) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
             fragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView, SignupFragment.class, null)
+                    .replace(R.id.fragmentContainerView, dashboard.class, null)
                     .setReorderingAllowed(true)
                     .addToBackStack(null) // Name can be null
                     .commit();
         } else {
             fragmentManager.beginTransaction()
-                    .replace(R.id.fragmentContainerView, Login_Fragment.class, null)
+                    .replace(R.id.fragmentContainerView, SignupFragment.class, null)
                     .setReorderingAllowed(true)
                     .addToBackStack(null) // Name can be null
                     .commit();
