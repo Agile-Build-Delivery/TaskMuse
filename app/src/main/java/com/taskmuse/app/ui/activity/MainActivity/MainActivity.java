@@ -10,6 +10,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.taskmuse.app.R;
 import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.authentication.Login_Fragment;
+import com.taskmuse.app.ui.fragment.dashboard.dashboard;
 
 import android.os.Bundle;
 
@@ -55,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.fragmentContainerView, Login_Fragment.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack(null) // Name can be null
+                .commit();
+    }
+    public void redirectToDashboard(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, dashboard.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
                 .commit();
     }
 }

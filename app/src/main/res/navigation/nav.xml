@@ -16,6 +16,10 @@
         android:id="@+id/signupFragment"
         android:name="com.taskmuse.app.ui.fragment.authentication.SignupFragment"
         android:label="SignupFragment" />
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.taskmuse.app.ui.fragment.dashboard.dashboard"
+        android:label="DashboardFragment"/>
 
 
 </navigation>

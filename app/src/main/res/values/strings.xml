@@ -12,4 +12,5 @@
     <string name="error">Error!</string>
     <string name="register">Register</string>
     <string name="fullName">Full Name</string>
+    <string name="boardText">Board</string>
 </resources>
