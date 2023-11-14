@@ -6,6 +6,7 @@
         android:checkable="true"
         android:icon="@drawable/logout_button"
         android:title="Log out"
-        app:showAsAction="ifRoom"/>
+        app:showAsAction="ifRoom"
+        android:onClick="showLogoutDialog"/>
 
 </menu>
