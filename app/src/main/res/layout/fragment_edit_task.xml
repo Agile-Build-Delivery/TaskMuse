@@ -44,19 +44,6 @@
                 android:paddingEnd="16dp"
                 android:paddingBottom="16dp">
 
-                <!-- Edit Task Title -->
-                <TextView
-                    android:id="@+id/editTaskTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="0dp"
-                    android:paddingEnd="0dp"
-                    android:paddingTop="10dp"
-                    android:text="Edit Task"
-                    android:textColor="@color/seed"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
-
                 <!-- Project Name (Spinner) -->
                 <TextView
                     android:id="@+id/projectNameLabel"
@@ -67,19 +54,12 @@
                     android:text="Project *"
                     android:textColor="#3F51B5" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/projectNameInputLayout"
+                <Spinner
+                    android:id="@+id/projectNameSpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Select Project *">
-
-                    <Spinner
-                        android:id="@+id/projectNameSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="58dp"
-                        android:background="@drawable/default_border"
-                        android:spinnerMode="dropdown" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="58dp"
+                    android:background="@drawable/default_border"
+                    android:spinnerMode="dropdown" />
 
                 <!-- Task Name -->
                 <TextView
@@ -94,8 +74,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/taskNameInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Task Name *">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/taskNameInput"
@@ -116,20 +95,12 @@
                     android:text="Priority"
                     android:textColor="#3F51B5" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/priorityInputLayout"
+                <Spinner
+                    android:id="@+id/prioritySpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Select Priority *">
-
-                    <Spinner
-                        android:id="@+id/prioritySpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="58dp"
-                        android:background="@drawable/default_border"
-                        android:spinnerMode="dropdown" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="58dp"
+                    android:background="@drawable/default_border"
+                    android:spinnerMode="dropdown" />
 
                 <!-- Description-->
                 <TextView
@@ -150,7 +121,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/default_border"
-                        android:hint="Enter task description"
                         android:inputType="textMultiLine"
                         android:lines="4" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -164,21 +134,12 @@
                     android:text="Task Assignee"
                     android:textColor="#3F51B5" />
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/assigneeInputLayout"
+                <Spinner
+                    android:id="@+id/taskAssigneeSpinner"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Task Assignee">
-
-                    <Spinner
-                        android:id="@+id/taskAssigneeSpinner"
-                        android:layout_width="match_parent"
-                        android:layout_height="58dp"
-                        android:background="@drawable/default_border"
-                        android:spinnerMode="dropdown" />
-
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="58dp"
+                    android:background="@drawable/default_border"
+                    android:spinnerMode="dropdown" />
 
                 <Button
                     android:id="@+id/editTaskBtn"

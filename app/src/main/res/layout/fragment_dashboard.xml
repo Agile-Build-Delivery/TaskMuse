@@ -35,7 +35,7 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <TextView
-                android:id="@+id/boardTitle"
+                android:id="@+id/editTaskTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -46,6 +46,16 @@
                 android:textColor="@color/seed"
                 android:textSize="30sp"
                 android:textStyle="bold"/>
+
+            <!-- Add ImageView for Edit Icon -->
+            <ImageView
+                android:id="@+id/editIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="16dp"
+                android:contentDescription="Edit Icon For Tasks"
+                android:src="@drawable/edit_icon" />
 
             <HorizontalScrollView
                 android:paddingTop="10dp"
