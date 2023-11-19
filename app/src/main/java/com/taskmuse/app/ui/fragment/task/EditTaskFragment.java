@@ -72,6 +72,18 @@ public class EditTaskFragment extends Fragment {
         Spinner prioritySpinner = rootView.findViewById(R.id.prioritySpinner);
         prioritySpinner.setAdapter(priorityAdapter);
 
+        // Assuming you have an array of task assignees
+        String[] assignees = {"Assignee 1", "Assignee 2", "Assignee 3"};
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<String> assigneeAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, assignees);
+
+        // Specify the layout to use when the list of choices appears
+        assigneeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Get the Spinner reference and set the adapter
+        Spinner taskAssigneeSpinner = rootView.findViewById(R.id.taskAssigneeSpinner);
+        taskAssigneeSpinner.setAdapter(assigneeAdapter);
 
         return rootView;
     }
