@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.appbar.AppBarLayout;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.fragment.task.EditTaskFragment;
 import com.taskmuse.app.utils.Task;
 import com.taskmuse.app.utils.TaskAdapter;
 
@@ -48,6 +50,18 @@ public class dashboard extends Fragment {
         recyclerViewToDo.setAdapter(adapterToDo);
         recyclerViewInProgress.setAdapter(adapterInProgress);
 
+        // Find the ImageView for the edit icon
+        ImageView editIcon = view.findViewById(R.id.editIcon);
+
+        // Set an OnClickListener for the edit icon
+        editIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Open the EditTaskFragment when the edit icon is clicked
+                openEditTaskFragment();
+            }
+        });
+
         return view;
     }
 
@@ -58,5 +72,18 @@ public class dashboard extends Fragment {
             dummyTasks.add(new Task("Task " + (i + 1) + " - " + status));
         }
         return dummyTasks;
+    }
+    private void openEditTaskFragment() {
+        // You need to replace "TASK_ID" with the actual task ID you want to edit
+        String taskId = "TaskId1";
+
+        // Create an instance of EditTaskFragment with the task ID
+        EditTaskFragment editTaskFragment = EditTaskFragment.newInstance(taskId);
+
+        // Replace the current fragment with EditTaskFragment
+        requireActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentContainerView, editTaskFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
