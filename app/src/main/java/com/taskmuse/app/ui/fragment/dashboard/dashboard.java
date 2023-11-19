@@ -27,27 +27,26 @@ public class dashboard extends Fragment {
         AppBarLayout appBar = (AppBarLayout) view.findViewById(R.id.appbar);
 
         RecyclerView recyclerViewToDo = view.findViewById(R.id.recyclerViewToDo);
+        RecyclerView recyclerViewInProgress = view.findViewById(R.id.recyclerViewInProgress);
 
 
         // Create new LayoutManagers for each RecyclerView
         LinearLayoutManager layoutManagerToDo = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManagerInProgress = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerViewToDo.setLayoutManager(layoutManagerToDo);
-
+        recyclerViewInProgress.setLayoutManager(layoutManagerInProgress);
 
         //TODO: This code below is used to create dummy data so that the Task Containers can be tested
         List<Task> dummyTasksToDo = generateDummyTasks("To Do", 20);
-
+        List<Task> dummyTasksInProgress = generateDummyTasks("In Progress", 30);
 
         //TODO: This code below is used to view dummy data so that the Task Containers can be tested
         TaskAdapter adapterToDo = new TaskAdapter(dummyTasksToDo);
-
-
-        //TODO: Please use adapter like below to manage actual data being fed into the containers
-//        TaskAdapter adapterToDo = new TaskAdapter(getToDoData());
-
+        TaskAdapter adapterInProgress = new TaskAdapter(dummyTasksInProgress);
 
         recyclerViewToDo.setAdapter(adapterToDo);
+        recyclerViewInProgress.setAdapter(adapterInProgress);
 
         return view;
     }
