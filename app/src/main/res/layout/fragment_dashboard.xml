@@ -75,12 +75,39 @@
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/to_do_container_header" />
 
-                            <!-- RecyclerView for the TO TO Container-->
+                            <!-- RecyclerView for the TO DO Container-->
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recyclerViewToDo"
                                 android:layout_width="300dp"
                                 android:layout_height="495dp"
                                 android:orientation="vertical" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="550dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <!-- In Progress Header Image -->
+                            <ImageView
+                                android:layout_width="300dp"
+                                android:layout_height="55dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/in_progress_container_header" />
+
+                            <!-- RecyclerView for the In Progress Container-->
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerViewInProgress"
+                                android:layout_width="350dp"
+                                android:layout_height="495dp"
+                                android:orientation="vertical" />
+
                         </LinearLayout>
                     </FrameLayout>
 
