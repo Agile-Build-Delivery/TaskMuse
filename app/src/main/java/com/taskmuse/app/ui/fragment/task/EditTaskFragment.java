@@ -16,10 +16,12 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.activity.MainActivity.MainActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,6 +60,7 @@ public class EditTaskFragment extends Fragment {
         Spinner taskAssigneeSpinner = view.findViewById(R.id.taskAssigneeSpinner);
         TextInputEditText taskNameInput = view.findViewById(R.id.taskNameInput);
         TextInputEditText descriptionInput = view.findViewById(R.id.descriptionInput);
+        FloatingActionButton deleteTaskFAB = view.findViewById(R.id.deleteTaskButton);
 
         // Firestore instance
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -135,6 +138,37 @@ public class EditTaskFragment extends Fragment {
                 }
             }
         });
+
+        deleteTaskFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("EditTaskFragment", "clicked delete button");
+                showDeleteDialog();
+            }
+        });
+
+    }
+
+    private void showDeleteDialog() {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(requireContext());
+        builder.setTitle("Delete task");
+        builder.setMessage("Are you sure you want to delete task?");
+        MainActivity mainActivity = (MainActivity) getActivity();
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("EditTaskFragment", "clicked yes");
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("EditTaskFragment", "clicked no");
+            }
+        });
+
+        android.app.AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     // Helper method to show an error dialog

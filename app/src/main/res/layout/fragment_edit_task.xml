@@ -160,6 +160,19 @@
                     app:rippleColor="?attr/colorOnSurface"
                     app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
                     app:strokeColor="@color/md_theme_dark_inversePrimary" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/deleteTaskButton"
+                    app:backgroundTint="#FFFF"
+                    app:tint="#5B94E0"
+                    android:padding="10dp"
+                    android:layout_margin="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:clickable="true"
+                    android:src="@drawable/delete_button"
+                    android:focusable="true" />
             </LinearLayout>
 
         </LinearLayout>
