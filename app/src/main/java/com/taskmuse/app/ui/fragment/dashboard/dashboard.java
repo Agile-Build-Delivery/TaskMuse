@@ -22,6 +22,7 @@ import com.taskmuse.app.R;
 import com.taskmuse.app.ui.fragment.task.EditTaskFragment;
 import com.taskmuse.app.utils.Task;
 import com.taskmuse.app.utils.TaskAdapter;
+import com.taskmuse.app.utils.firebaseDatabaseUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,9 +37,6 @@ public class dashboard extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         AppBarLayout appBar = (AppBarLayout) view.findViewById(R.id.appbar);
-
-        // Initialize Firebase (consider moving this to the Application class)
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         RecyclerView recyclerViewToDo = view.findViewById(R.id.recyclerViewToDo);
         RecyclerView recyclerViewInProgress = view.findViewById(R.id.recyclerViewInProgress);
@@ -55,7 +53,7 @@ public class dashboard extends Fragment {
         recyclerViewDone.setLayoutManager(layoutManagerDone);
 
         // Auto populate the the to do container with the tasks in the list
-        db.collection(TODO_COLLECTION)
+        firebaseDatabaseUtils.getFirestoreInstance().collection(TODO_COLLECTION)
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         // Handle errors
@@ -82,7 +80,7 @@ public class dashboard extends Fragment {
                 });
 
         // Auto populate the the in progress container with the tasks in the list
-        db.collection(IN_PROGRESS_COLLECTION)
+        firebaseDatabaseUtils.getFirestoreInstance().collection(IN_PROGRESS_COLLECTION)
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         // Handle errors
@@ -109,7 +107,7 @@ public class dashboard extends Fragment {
                 });
 
         // Auto populate the the done container with the tasks in the list
-        db.collection(DONE_COLLECTION)
+        firebaseDatabaseUtils.getFirestoreInstance().collection(DONE_COLLECTION)
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         // Handle errors
