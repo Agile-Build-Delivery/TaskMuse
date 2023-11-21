@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.taskmuse.app.R;
 import com.taskmuse.app.ui.fragment.task.EditTaskFragment;
-import com.taskmuse.app.utils.Task;
+import com.taskmuse.app.model.Task;
 import com.taskmuse.app.utils.TaskAdapter;
 import com.taskmuse.app.utils.firebaseDatabaseUtils;
 
