@@ -30,25 +30,31 @@ public class dashboard extends Fragment {
 
         RecyclerView recyclerViewToDo = view.findViewById(R.id.recyclerViewToDo);
         RecyclerView recyclerViewInProgress = view.findViewById(R.id.recyclerViewInProgress);
+        RecyclerView recyclerViewDone = view.findViewById(R.id.recyclerViewDone);
 
 
         // Create new LayoutManagers for each RecyclerView
         LinearLayoutManager layoutManagerToDo = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
         LinearLayoutManager layoutManagerInProgress = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager layoutManagerDone = new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false);
 
         recyclerViewToDo.setLayoutManager(layoutManagerToDo);
         recyclerViewInProgress.setLayoutManager(layoutManagerInProgress);
+        recyclerViewDone.setLayoutManager(layoutManagerDone);
 
         //TODO: This code below is used to create dummy data so that the Task Containers can be tested
         List<Task> dummyTasksToDo = generateDummyTasks("To Do", 20);
-        List<Task> dummyTasksInProgress = generateDummyTasks("In Progress", 30);
+        List<Task> dummyTasksInProgress = generateDummyTasks("In Progress", 20);
+        List<Task> dummyTasksDone = generateDummyTasks("Done", 20);
 
         //TODO: This code below is used to view dummy data so that the Task Containers can be tested
         TaskAdapter adapterToDo = new TaskAdapter(dummyTasksToDo);
         TaskAdapter adapterInProgress = new TaskAdapter(dummyTasksInProgress);
+        TaskAdapter adapterDone = new TaskAdapter(dummyTasksDone);
 
         recyclerViewToDo.setAdapter(adapterToDo);
         recyclerViewInProgress.setAdapter(adapterInProgress);
+        recyclerViewDone.setAdapter(adapterDone);
 
         // Find the ImageView for the edit icon
         ImageView editIcon = view.findViewById(R.id.editIcon);
