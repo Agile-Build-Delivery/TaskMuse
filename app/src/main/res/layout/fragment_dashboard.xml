@@ -47,16 +47,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold"/>
 
-            <!-- Add ImageView for Edit Icon -->
-            <ImageView
-                android:id="@+id/editIcon"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="Edit Icon For Tasks"
-                android:src="@drawable/edit_icon" />
-
             <HorizontalScrollView
                 android:paddingTop="10dp"
                 android:layout_width="match_parent"
@@ -114,6 +104,33 @@
                             <!-- RecyclerView for the In Progress Container-->
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recyclerViewInProgress"
+                                android:layout_width="350dp"
+                                android:layout_height="495dp"
+                                android:orientation="vertical" />
+
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:layout_width="300dp"
+                        android:layout_height="550dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <!-- Image View on top -->
+                            <ImageView
+                                android:layout_width="300dp"
+                                android:layout_height="55dp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/done_container_header" />
+
+                            <!-- RecyclerView below the Image View -->
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerViewDone"
                                 android:layout_width="350dp"
                                 android:layout_height="495dp"
                                 android:orientation="vertical" />

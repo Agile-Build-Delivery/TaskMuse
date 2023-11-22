@@ -1,5 +1,6 @@
 package com.taskmuse.app.utils;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,14 +8,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.taskmuse.app.R;
+import com.taskmuse.app.model.Task;
 import java.util.List;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private final List<Task> taskList;
+    private List<Task> taskList;
+    private OnItemClickListener onItemClickListener;
 
-    public TaskAdapter(List<Task> taskList) {
+    public interface OnItemClickListener {
+        void onItemClick(Task task, String documentId);
+    }
+
+    public TaskAdapter(List<Task> taskList, OnItemClickListener onItemClickListener) {
         this.taskList = taskList;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -24,11 +32,23 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return new TaskViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         Task task = taskList.get(position);
-        // Bind task data to ViewHolder views
-        holder.bindTask(task);
+
+        // Bind data to the ViewHolder
+        holder.taskNameTextView.setText("Task Name: " + task.getTaskName());
+        holder.assigneeTextView.setText("Assignee: " + task.getAssignee());
+        holder.priorityTextView.setText("Priority: " + task.getPriority());
+
+        // Set click listener for the item
+        holder.itemView.setOnClickListener(view -> {
+            if (onItemClickListener != null) {
+                // Pass the task and document ID to the callback
+                onItemClickListener.onItemClick(task, task.getId());
+            }
+        });
     }
 
     @Override
@@ -36,21 +56,23 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return taskList.size();
     }
 
-    static class TaskViewHolder extends RecyclerView.ViewHolder {
+    public static class TaskViewHolder extends RecyclerView.ViewHolder {
+        TextView taskNameTextView;
+        TextView assigneeTextView;
+        TextView priorityTextView;
 
-        private final TextView taskTitleTextView;
-
-        TaskViewHolder(@NonNull View itemView) {
+        public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
-            taskTitleTextView = itemView.findViewById(R.id.taskTitleTextView);
-        }
 
-        // Update your adapter to use the modified Task class
-        void bindTask(Task task) {
-            // Bind task data to ViewHolder views
-            taskTitleTextView.setText(task.title());
+            // Initialize views in the ViewHolder
+            taskNameTextView = itemView.findViewById(R.id.taskNameTextView);
+            assigneeTextView = itemView.findViewById(R.id.assigneeTextView);
+            priorityTextView = itemView.findViewById(R.id.priorityTextView);
         }
-
+    }
+    // Method to get the document ID at a specific position
+    private String getDocumentId(int position) {
+        // Replace this with your logic to get the document ID
+        return "DocumentIdPlaceholder";
     }
 }
-
