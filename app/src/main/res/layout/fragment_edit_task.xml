@@ -85,6 +85,22 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <!-- Task Status (Spinner) -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:text="Status"
+                    android:textColor="#3F51B5" />
+
+                <Spinner
+                    android:id="@+id/statusSpinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:background="@drawable/default_border"
+                    android:spinnerMode="dropdown" />
+
                 <!-- Priority Dropdown -->
                 <TextView
                     android:id="@+id/priorityLabel"
@@ -119,7 +135,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/descriptionInput"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="94dp"
                         android:background="@drawable/default_border"
                         android:inputType="textMultiLine"
                         android:lines="4" />
@@ -144,8 +160,8 @@
                 <Button
                     android:id="@+id/editTaskBtn"
                     style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="164dp"
-                    android:layout_height="66dp"
+                    android:layout_width="169dp"
+                    android:layout_height="67dp"
                     android:layout_margin="10sp"
                     android:text="Edit Task"
                     android:textColor="@color/md_theme_dark_inversePrimary"
@@ -155,7 +171,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.948"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/PasswordInput"
+                    app:layout_constraintTop_toBottomOf="parent"
                     app:layout_constraintVertical_bias="0.898"
                     app:rippleColor="?attr/colorOnSurface"
                     app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
