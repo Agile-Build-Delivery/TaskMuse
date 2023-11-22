@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,13 +22,14 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.taskmuse.app.R;
+import com.taskmuse.app.utils.firebaseDatabaseUtils;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class EditTaskFragment extends Fragment {
 
-    private static final String ARG_TASK_ID = "TaskId1";
+    private static final String ARG_TASK_ID = "TaskId2";
 
     public EditTaskFragment() {
         // Required empty public constructor
@@ -55,19 +58,17 @@ public class EditTaskFragment extends Fragment {
         // References to UI elements
         Spinner projectNameSpinner = view.findViewById(R.id.projectNameSpinner);
         Spinner prioritySpinner = view.findViewById(R.id.prioritySpinner);
+        Spinner statusSpinner = view.findViewById(R.id.statusSpinner);
         Spinner taskAssigneeSpinner = view.findViewById(R.id.taskAssigneeSpinner);
         TextInputEditText taskNameInput = view.findViewById(R.id.taskNameInput);
         TextInputEditText descriptionInput = view.findViewById(R.id.descriptionInput);
-
-        // Firestore instance
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         // Firestore path for the task
         String taskPath = "Tasks/" + taskId;
         Log.d("String PAth", "Data:" + taskPath);
 
         // Fetch data from Firestore
-        db.document(taskPath).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firebaseDatabaseUtils.getFirestoreInstance().document(taskPath).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
@@ -75,25 +76,33 @@ public class EditTaskFragment extends Fragment {
                     if (document.exists()) {
                         // Retrieve data from Firestore
                         String projectName = document.getString("projectName");
+                        String status = document.getString("status");
                         String priority = document.getString("priority");
                         String taskAssignee = document.getString("assignee");
                         String taskName = document.getString("taskName");
                         String description = document.getString("description");
 
                         Log.d("EditTaskFragment", "ProjectName: " + projectName);
+                        Log.d("EditTaskFragment", "Status: " + status);
                         Log.d("EditTaskFragment", "Priority: " + priority);
                         Log.d("EditTaskFragment", "TaskAssignee: " + taskAssignee);
 
 
                         // Prepopulate UI elements
-                        List<String> projectNamesList = Arrays.asList("Project A", "Project B", "Project C");
+                        List<String> projectNamesList = Arrays.asList("Project A", "Project B", "Project C, Project D");
+                        List<String> statusList = Arrays.asList("ToDo", "InProgress", "Done");
                         List<String> priorityList = Arrays.asList("High", "Highest", "Medium", "Low", "Lowest");
-                        List<String> assigneeList = Arrays.asList("Kajal", "Agata", "User 3");
+                        List<String> assigneeList = Arrays.asList("Kajal", "Agata", "PSM", "Sandesh");
 
                         // Create ArrayAdapter
                         ArrayAdapter<String> projectNameAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, projectNamesList);
                         projectNameAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                         projectNameSpinner.setAdapter(projectNameAdapter);
+
+
+                        ArrayAdapter<String> statusAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, statusList);
+                        statusAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        statusSpinner.setAdapter(statusAdapter);
 
                         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, priorityList);
                         priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -109,6 +118,11 @@ public class EditTaskFragment extends Fragment {
                             projectNameSpinner.setSelection(projectPosition);
                         }
 
+                        if (statusAdapter != null) {
+                            int statusPosition = statusAdapter.getPosition(status);
+                            statusSpinner.setSelection(statusPosition);
+                        }
+
                         if (priorityAdapter != null) {
                             int priorityPosition = priorityAdapter.getPosition(priority);
                             prioritySpinner.setSelection(priorityPosition);
@@ -122,6 +136,20 @@ public class EditTaskFragment extends Fragment {
 
                         taskNameInput.setText(taskName);
                         descriptionInput.setText(description);
+
+                        // Set OnClickListener for the "Edit Task" button
+                        Button editTaskButton = view.findViewById(R.id.editTaskBtn);
+                        editTaskButton.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Retrieve values from UI elements
+                                String taskName = taskNameInput.getText().toString();
+                                String description = descriptionInput.getText().toString();
+
+                                // Perform the logic to update the task in Firestore
+                                updateTaskInFirestore(taskId, projectNameSpinner, taskName, statusSpinner, prioritySpinner, descriptionInput, taskAssigneeSpinner);
+                            }
+                        });
                     } else {
                         // Handle the case where the document does not exist
                         // This might happen if the task ID is invalid
@@ -137,18 +165,69 @@ public class EditTaskFragment extends Fragment {
         });
     }
 
-    // Helper method to show an error dialog
-    private void showErrorDialog(String message) {
+    // Method to update the task in Firestore
+    // Update the task in Firestore
+    private void updateTaskInFirestore(String taskId, Spinner projectNameSpinner, String taskName, Spinner statusSpinner, Spinner prioritySpinner, TextInputEditText descriptionInput, Spinner taskAssigneeSpinner) {
+        // Retrieve values from UI elements
+        String projectName = projectNameSpinner.getSelectedItem().toString();
+        String taskNameValue = taskName;
+        String status = statusSpinner.getSelectedItem().toString();
+        String priority = prioritySpinner.getSelectedItem().toString();
+        String description = descriptionInput.getText().toString();
+        String taskAssignee = taskAssigneeSpinner.getSelectedItem().toString();
+
+        // Update the task in Firestore
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String taskPath = "Tasks/" + taskId;
+        firebaseDatabaseUtils.getFirestoreInstance().document(taskPath).update(
+                "projectName", projectName,
+                "taskName", taskNameValue,
+                "status", status,
+                "priority", priority,
+                "description", description,
+                "assignee", taskAssignee
+        ).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    // Show a success message or handle success accordingly
+                    // You can display a Toast, Snackbar, or any other UI element
+                    showSuccessDialog("Task updated successfully");
+                    showToast("Task updated successfully");
+                } else {
+                    // Handle errors that might occur during the update process
+                    showErrorDialog("Failed to update task");
+                }
+            }
+        });
+    }
+
+
+    // Helper method to show dialog
+    private void showDialog(String title, String message, int icon) {
         new AlertDialog.Builder(requireContext())
-                .setTitle("Error")
+                .setTitle(title)
                 .setMessage(message)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
                     }
-
                 })
-                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setIcon(icon)
                 .show();
     }
+
+    // Usage
+    private void showErrorDialog(String message) {
+        showDialog("Error", message, android.R.drawable.ic_dialog_alert);
+    }
+
+    private void showSuccessDialog(String message) {
+        showDialog("Success", message, android.R.drawable.ic_dialog_info);
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
 }
