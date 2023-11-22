@@ -28,9 +28,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class dashboard extends Fragment {
-    private static final String TODO_COLLECTION = "todo";
-    private static final String IN_PROGRESS_COLLECTION = "inProgress";
-    private static final String DONE_COLLECTION = "Done";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,7 +50,8 @@ public class dashboard extends Fragment {
         recyclerViewDone.setLayoutManager(layoutManagerDone);
 
         // Auto populate the the to do container with the tasks in the list
-        firebaseDatabaseUtils.getFirestoreInstance().collection(TODO_COLLECTION)
+        firebaseDatabaseUtils.getFirestoreInstance().collection("Tasks")
+                .whereEqualTo("status", "toDo")
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         // Handle errors
@@ -67,6 +65,7 @@ public class dashboard extends Fragment {
 
                         for (QueryDocumentSnapshot document : value) {
                             Task taskItem = document.toObject(Task.class);
+                            taskItem.setId(document.getId()); // Set the document ID in the Task object
                             tasks.add(taskItem);
                         }
 
@@ -80,7 +79,8 @@ public class dashboard extends Fragment {
                 });
 
         // Auto populate the the in progress container with the tasks in the list
-        firebaseDatabaseUtils.getFirestoreInstance().collection(IN_PROGRESS_COLLECTION)
+        firebaseDatabaseUtils.getFirestoreInstance().collection("Tasks")
+                .whereEqualTo("status", "inProgress")
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         // Handle errors
@@ -94,6 +94,7 @@ public class dashboard extends Fragment {
 
                         for (QueryDocumentSnapshot document : value) {
                             Task taskItem = document.toObject(Task.class);
+                            taskItem.setId(document.getId()); // Set the document ID in the Task object
                             tasks.add(taskItem);
                         }
 
@@ -107,7 +108,8 @@ public class dashboard extends Fragment {
                 });
 
         // Auto populate the the done container with the tasks in the list
-        firebaseDatabaseUtils.getFirestoreInstance().collection(DONE_COLLECTION)
+        firebaseDatabaseUtils.getFirestoreInstance().collection("Tasks")
+                .whereEqualTo("status", "done")
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         // Handle errors
@@ -121,8 +123,10 @@ public class dashboard extends Fragment {
 
                         for (QueryDocumentSnapshot document : value) {
                             Task taskItem = document.toObject(Task.class);
+                            taskItem.setId(document.getId()); // Set the document ID in the Task object
                             tasks.add(taskItem);
                         }
+
                         // Update the RecyclerView adapter with the new tasks
                         TaskAdapter adapterDone = new TaskAdapter(tasks, this::openTaskDetailsFragment);
                         recyclerViewDone.setAdapter(adapterDone);

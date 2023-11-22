@@ -46,7 +46,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.itemView.setOnClickListener(view -> {
             if (onItemClickListener != null) {
                 // Pass the task and document ID to the callback
-                onItemClickListener.onItemClick(task, getDocumentId(position));
+                onItemClickListener.onItemClick(task, task.getId());
             }
         });
     }
