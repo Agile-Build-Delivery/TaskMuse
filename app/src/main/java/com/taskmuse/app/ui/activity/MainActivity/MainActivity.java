@@ -106,6 +106,15 @@ public class MainActivity extends AppCompatActivity {
                 .addToBackStack(null)
                 .commit();
     }
+    //TODO: Replace dashboard class with add task class when implementing addTask page
+    //For now will redirect to dashboard
+    public void redirectToAddTask(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, dashboard.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+    }
     public void showLogoutDialog(MenuItem item) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Logout");
