@@ -17,9 +17,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.task.EditTaskFragment;
 import com.taskmuse.app.model.Task;
 import com.taskmuse.app.utils.TaskAdapter;
@@ -42,17 +45,21 @@ public class dashboard extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        // Initialize views
-        initViews(view);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Initialize views
+            initViews(view);
 
-        // Setup RecyclerViews
-        setupRecyclerViews();
+            // Setup RecyclerViews
+            setupRecyclerViews();
 
-        // Fetch and populate tasks for each status
-        fetchAndPopulateTasks(STATUS_TODO, recyclerViewToDo);
-        fetchAndPopulateTasks(STATUS_IN_PROGRESS, recyclerViewInProgress);
-        fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone);
-
+            // Fetch and populate tasks for each status
+            fetchAndPopulateTasks(STATUS_TODO, recyclerViewToDo);
+            fetchAndPopulateTasks(STATUS_IN_PROGRESS, recyclerViewInProgress);
+            fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone);
+        } else {
+            showErrorDialog("User Not Found");
+        }
         return view;
     }
 
@@ -131,19 +138,28 @@ public class dashboard extends Fragment {
 
     // Handle errors during data fetch and show an error dialog
     private void handleFetchError(String errorMessage) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
         Log.e("Firestore", "Error fetching tasks: " + errorMessage);
         Toast.makeText(requireContext(), "Error fetching tasks", Toast.LENGTH_SHORT).show();
-        showErrorDialog("Error fetching tasks");
+        showErrorDialog("Error fetching tasks");}else{
+            Log.d("DashboardFragment: ","USER NOT FOUND/USER LOGGED OUT");
+        }
     }
 
     // Show a dialog with the specified error message
     private void showErrorDialog(String message) {
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Error")
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            new AlertDialog.Builder(requireContext())
+                    .setTitle("Error")
+                    .setMessage(message)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }else {
+            Log.d("DashboardFragment: ","USER NOT FOUND/USER LOGGED_OUT");
+        }
     }
 
 }
