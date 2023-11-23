@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.taskmuse.app.R;
 import com.taskmuse.app.ui.activity.MainActivity.MainActivity;
+import com.taskmuse.app.ui.fragment.get_started.GetStartedFragment;
 import com.taskmuse.app.utils.ValidationUtils;
 
 public class SignupFragment extends Fragment {
@@ -135,9 +136,8 @@ public class SignupFragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO: USE THIS CODE TO MOVE TO GET STARTED PAGE AFTER SUCCESSFUL SIGN UP
                 assert mainActivity != null;
-                mainActivity.alreadyUser();
+                mainActivity.redirectToGetStarted();
             }
         });
 
