@@ -44,6 +44,17 @@
                 android:paddingEnd="16dp"
                 android:paddingBottom="16dp">
 
+                <TextView
+                    android:id="@+id/editTaskTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="-5dp"
+                    android:text="Edit Task"
+                    android:textColor="@color/seed"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+
                 <!-- Project Name (Spinner) -->
                 <TextView
                     android:id="@+id/projectNameLabel"
@@ -135,7 +146,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/descriptionInput"
                         android:layout_width="match_parent"
-                        android:layout_height="94dp"
+                        android:layout_height="55dp"
                         android:background="@drawable/default_border"
                         android:inputType="textMultiLine"
                         android:lines="4" />

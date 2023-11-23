@@ -35,7 +35,7 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <TextView
-                android:id="@+id/editTaskTitle"
+                android:id="@+id/BoardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
