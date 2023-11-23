@@ -18,10 +18,12 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.activity.MainActivity.MainActivity;
 import com.taskmuse.app.utils.firebaseDatabaseUtils;
 
 import java.util.Arrays;
@@ -62,6 +64,7 @@ public class EditTaskFragment extends Fragment {
         Spinner taskAssigneeSpinner = view.findViewById(R.id.taskAssigneeSpinner);
         TextInputEditText taskNameInput = view.findViewById(R.id.taskNameInput);
         TextInputEditText descriptionInput = view.findViewById(R.id.descriptionInput);
+        FloatingActionButton deleteTaskFAB = view.findViewById(R.id.deleteTaskButton);
 
         // Firestore path for the task
         String taskPath = "Tasks/" + taskId;
@@ -163,6 +166,13 @@ public class EditTaskFragment extends Fragment {
                 }
             }
         });
+        deleteTaskFAB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("EditTaskFragment", "clicked delete button");
+                showDeleteDialog(taskPath);
+            }
+        });
     }
 
     // Method to update the task in Firestore
@@ -215,6 +225,49 @@ public class EditTaskFragment extends Fragment {
                 })
                 .setIcon(icon)
                 .show();
+    }
+
+    private void showDeleteDialog(String taskPath) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(requireContext());
+        builder.setTitle("Delete task");
+        builder.setMessage("Are you sure you want to delete task?");
+        MainActivity mainActivity = (MainActivity) getActivity();
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Log.d("EditTaskFragment", "clicked yes");
+                deleteTaskFromFirestore(taskPath);
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+                Log.d("EditTaskFragment", "clicked no");
+            }
+        });
+        android.app.AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void deleteTaskFromFirestore(String taskPath) {
+        if (taskPath == null) {
+            showErrorDialog("Task not Found");
+        } else {
+            firebaseDatabaseUtils.getFirestoreInstance().document(taskPath).delete()
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Log.d("EditTaskFragment", "Task deleted successfully");
+                                requireActivity().onBackPressed();
+                            } else {
+                                Log.d("EditTaskFragment", "Error deleting task", task.getException());
+                                showErrorDialog("Error deleting task");
+                            }
+                        }
+                    });
+        }
     }
 
     // Usage
