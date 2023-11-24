@@ -22,7 +22,7 @@
         android:layout_toEndOf="@id/searchIcon"
         android:background="@android:color/transparent"
         android:fontFamily="@font/nunito_light_italic"
-        android:hint="Search tasks..."
+        android:hint="Search task name..."
         android:layout_marginTop="12dp"
         android:layout_marginLeft="4dp"
         android:inputType="text"
