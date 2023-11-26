@@ -1,13 +1,14 @@
 package com.taskmuse.app.ui.fragment.dashboard;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -40,6 +42,10 @@ public class dashboard extends Fragment {
     private RecyclerView recyclerViewToDo;
     private RecyclerView recyclerViewInProgress;
     private RecyclerView recyclerViewDone;
+    private EditText searchEditText;
+
+    private List<Task> allTasks = new ArrayList<>();
+
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,16 +53,31 @@ public class dashboard extends Fragment {
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-            // Initialize views
-            initViews(view);
+        // Initialize views
+        initViews(view);
 
-            // Setup RecyclerViews
-            setupRecyclerViews();
+        // Setup RecyclerViews
+        setupRecyclerViews();
 
-            // Fetch and populate tasks for each status
-            fetchAndPopulateTasks(STATUS_TODO, recyclerViewToDo);
-            fetchAndPopulateTasks(STATUS_IN_PROGRESS, recyclerViewInProgress);
-            fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone);
+        // Fetch and populate tasks for each status
+        fetchAndPopulateTasks(STATUS_TODO, recyclerViewToDo, "");
+        fetchAndPopulateTasks(STATUS_IN_PROGRESS, recyclerViewInProgress, "");
+        fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone, "");
+
+        searchEditText = view.findViewById(R.id.searchEditText);
+        searchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Filter tasks based on the search query
+                filterTasks(charSequence.toString());
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+            }
+        });
         } else {
             showErrorDialog("User Not Found");
         }
@@ -84,29 +105,50 @@ public class dashboard extends Fragment {
     }
 
     // Fetch and populate tasks based on the specified status
-    private void fetchAndPopulateTasks(String status, RecyclerView recyclerView) {
-        firebaseDatabaseUtils.getFirestoreInstance().collection("Tasks")
-                .whereEqualTo("status", status)
-                .addSnapshotListener((value, error) -> {
-                    if (error != null) {
-                        // Handle errors during data fetch
-                        handleFetchError(error.getMessage());
-                        return;
-                    }
-                    if (value != null && !value.isEmpty()) {
-                        // Extract tasks from Firestore snapshot
-                        List<Task> tasks = extractTasksFromSnapshot(value);
+    private void fetchAndPopulateTasks(String status, RecyclerView recyclerView, String query) {
+        FirebaseFirestore firestore = firebaseDatabaseUtils.getFirestoreInstance();
+        com.google.firebase.firestore.Query baseQuery = firestore.collection("Tasks")
+                .whereEqualTo("status", status);
 
-                        // Update the RecyclerView with the retrieved tasks
-                        updateRecyclerView(recyclerView, tasks);
-                    } else {
-                        // Handle the case where there are no tasks
-                        // clear the RecyclerView or show a message to the user
-                    }
-                });
+        baseQuery.addSnapshotListener((value, error) -> {
+            if (error != null) {
+                handleFetchError(error.getMessage());
+                return;
+            }
+            if (value != null && !value.isEmpty()) {
+                allTasks = extractTasksFromSnapshot(value);
+                List<Task> filteredTasks = filterTasksByName(allTasks, query.toLowerCase());
+                updateRecyclerView(recyclerView, filteredTasks);
+            } else {
+                Log.d("DashboardFragment", "No tasks found");
+                updateRecyclerView(recyclerView, new ArrayList<>()); // Clear the RecyclerView
+            }
+        });
+    }
+    // Method to filter tasks based on the search query
+    private void filterTasks(String query) {
+        fetchAndPopulateTasks(STATUS_TODO, recyclerViewToDo, query);
+        fetchAndPopulateTasks(STATUS_IN_PROGRESS, recyclerViewInProgress, query);
+        fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone, query);
     }
 
-    // Extract tasks from Firestore QuerySnapshot
+    private List<Task> filterTasksByName(List<Task> tasks, String query) {
+        List<Task> filteredTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            // Check if taskName is not null before calling toLowerCase()
+            if (task.getTaskName() != null) {
+                String taskName = task.getTaskName().toLowerCase();
+
+                // Check for various conditions for a match, including partial word matches
+                if (taskName.contains(query) || taskName.startsWith(query) || taskName.endsWith(query)) {
+                    filteredTasks.add(task);
+                }
+            }
+        }
+        return filteredTasks;
+    }
+
+    // Extract tasks from FireStore QuerySnapshot
     private List<Task> extractTasksFromSnapshot(QuerySnapshot snapshot) {
         List<Task> tasks = new ArrayList<>();
         for (QueryDocumentSnapshot document : snapshot) {
@@ -119,12 +161,9 @@ public class dashboard extends Fragment {
 
     // Update the RecyclerView with the given list of tasks
     private void updateRecyclerView(RecyclerView recyclerView, List<Task> tasks) {
+        Log.d("DashboardFragment", "Updating RecyclerView with tasks. Number of tasks: " + tasks.size());
         TaskAdapter adapter = new TaskAdapter(tasks, this::openTaskDetailsFragment);
         recyclerView.setAdapter(adapter);
-        // If tasks list is empty, clear the RecyclerView
-        if (tasks.isEmpty()) {
-            recyclerView.setAdapter(null); // Clearing the adapter
-        }
     }
 
     // Open the EditTaskFragment for the selected task
@@ -140,9 +179,9 @@ public class dashboard extends Fragment {
     private void handleFetchError(String errorMessage) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
-        Log.e("Firestore", "Error fetching tasks: " + errorMessage);
-        Toast.makeText(requireContext(), "Error fetching tasks", Toast.LENGTH_SHORT).show();
-        showErrorDialog("Error fetching tasks");}else{
+            Log.e("Firestore", "Error fetching tasks: " + errorMessage);
+            Toast.makeText(requireContext(), "Error fetching tasks", Toast.LENGTH_SHORT).show();
+            showErrorDialog("Error fetching tasks");}else{
             Log.d("DashboardFragment: ","USER NOT FOUND/USER LOGGED OUT");
         }
     }
@@ -161,5 +200,4 @@ public class dashboard extends Fragment {
             Log.d("DashboardFragment: ","USER NOT FOUND/USER LOGGED_OUT");
         }
     }
-
 }
