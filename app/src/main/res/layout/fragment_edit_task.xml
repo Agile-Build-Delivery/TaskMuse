@@ -9,159 +9,191 @@
     android:id="@+id/dashboardLayout"
     tools:context="com.taskmuse.app.ui.fragment.task.EditTaskFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/background">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appbar"
+            <com.google.android.material.appbar.MaterialToolbar
+                style="@style/Widget.MaterialComponents.Toolbar.Primary"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/background">
+                android:backgroundTint="#00000000"
+                app:menu="@menu/top_app_bar_menu"
+                app:navigationIcon="@drawable/nav_menu_icon"/>
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    style="@style/Widget.MaterialComponents.Toolbar.Primary"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:backgroundTint="#00000000"
-                    app:menu="@menu/top_app_bar_menu"
-                    app:navigationIcon="@drawable/nav_menu_icon"/>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            </com.google.android.material.appbar.AppBarLayout>
+        <!-- Add this LinearLayout as the parent -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="828dp"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingTop="75dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="16dp">
 
-            <!-- Add this LinearLayout as the parent -->
-            <LinearLayout
+            <TextView
+                android:id="@+id/editTaskTitle"
                 android:layout_width="match_parent"
-                android:layout_height="828dp"
-                android:orientation="vertical"
-                android:paddingStart="16dp"
-                android:paddingTop="75dp"
-                android:paddingEnd="16dp"
-                android:paddingBottom="16dp">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="-5dp"
+                android:text="Edit Task"
+                android:textColor="@color/seed"
+                android:textSize="30sp"
+                android:textStyle="bold" />
 
-                <!-- Project Name (Spinner) -->
-                <TextView
-                    android:id="@+id/projectNameLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="Project *"
-                    android:textColor="#3F51B5" />
+            <!-- Project Name (Spinner) -->
+            <TextView
+                android:id="@+id/projectNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Project *"
+                android:textColor="#3F51B5" />
 
-                <Spinner
-                    android:id="@+id/projectNameSpinner"
+            <Spinner
+                android:id="@+id/projectNameSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/default_border"
+                android:spinnerMode="dropdown" />
+
+            <!-- Task Name -->
+            <TextView
+                android:id="@+id/taskNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Task Name *"
+                android:textColor="#3F51B5" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/taskNameInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/taskNameInput"
                     android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/default_border"
-                    android:spinnerMode="dropdown" />
+                    android:inputType="text" />
 
-                <!-- Task Name -->
-                <TextView
-                    android:id="@+id/taskNameLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="Task Name *"
-                    android:textColor="#3F51B5" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/taskNameInputLayout"
+            <!-- Task Status (Spinner) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Status"
+                android:textColor="#3F51B5" />
+
+            <Spinner
+                android:id="@+id/statusSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/default_border"
+                android:spinnerMode="dropdown" />
+
+            <!-- Priority Dropdown -->
+            <TextView
+                android:id="@+id/priorityLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Priority"
+                android:textColor="#3F51B5" />
+
+            <Spinner
+                android:id="@+id/prioritySpinner"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/default_border"
+                android:spinnerMode="dropdown" />
+
+            <!-- Description-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Description"
+                android:textColor="#3F51B5" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descriptionInputLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descriptionInput"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/taskNameInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/default_border"
-                        android:inputType="text" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <!-- Priority Dropdown -->
-                <TextView
-                    android:id="@+id/priorityLabel"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="Priority"
-                    android:textColor="#3F51B5" />
-
-                <Spinner
-                    android:id="@+id/prioritySpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="58dp"
+                    android:layout_height="55dp"
                     android:background="@drawable/default_border"
-                    android:spinnerMode="dropdown" />
+                    android:inputType="textMultiLine"
+                    android:lines="4" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Description-->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="Description"
-                    android:textColor="#3F51B5" />
+            <!-- Task Assignee (Spinner) -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Task Assignee"
+                android:textColor="#3F51B5" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/descriptionInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+            <Spinner
+                android:id="@+id/taskAssigneeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@drawable/default_border"
+                android:spinnerMode="dropdown" />
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/descriptionInput"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/default_border"
-                        android:inputType="textMultiLine"
-                        android:lines="4" />
-                </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/editTaskBtn"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="169dp"
+                android:layout_height="67dp"
+                android:layout_margin="10sp"
+                android:text="Edit Task"
+                android:textColor="@color/md_theme_dark_inversePrimary"
+                android:textSize="21sp"
+                app:backgroundTint="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:rippleColor="?attr/colorOnSurface"
+                app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                app:strokeColor="@color/md_theme_dark_inversePrimary" />
 
-                <!-- Task Assignee (Spinner) -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="Task Assignee"
-                    android:textColor="#3F51B5" />
-
-                <Spinner
-                    android:id="@+id/taskAssigneeSpinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="58dp"
-                    android:background="@drawable/default_border"
-                    android:spinnerMode="dropdown" />
-
-                <Button
-                    android:id="@+id/editTaskBtn"
-                    style="?attr/materialButtonOutlinedStyle"
-                    android:layout_width="164dp"
-                    android:layout_height="66dp"
-                    android:layout_margin="10sp"
-                    android:text="Edit Task"
-                    android:textColor="@color/md_theme_dark_inversePrimary"
-                    android:textSize="21sp"
-                    app:backgroundTint="@android:color/transparent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.948"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/PasswordInput"
-                    app:layout_constraintVertical_bias="0.898"
-                    app:rippleColor="?attr/colorOnSurface"
-                    app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-                    app:strokeColor="@color/md_theme_dark_inversePrimary" />
-            </LinearLayout>
-
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/deleteTaskButton"
+                app:backgroundTint="#FFFF"
+                app:tint="#5B94E0"
+                android:padding="10dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="-30dp"
+                android:layout_marginBottom="16dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|bottom"
+                android:clickable="true"
+                android:src="@drawable/delete_button"
+                android:focusable="true" />
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+
+    </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

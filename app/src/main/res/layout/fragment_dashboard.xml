@@ -35,17 +35,19 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <TextView
-                android:id="@+id/editTaskTitle"
+                android:id="@+id/BoardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="50dp"
-                android:paddingStart="20dp"
+                android:layout_marginTop="55dp"
+                android:paddingStart="15dp"
                 android:paddingEnd="20dp"
                 android:text="@string/boardText"
                 android:textColor="@color/seed"
                 android:textSize="30sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
+            <include layout="@layout/edittext_search"/>
 
             <HorizontalScrollView
                 android:paddingTop="10dp"
@@ -56,7 +58,9 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="15dp"
+                    android:elevation="8dp">
 
                     <FrameLayout
                         android:layout_width="300dp"
@@ -80,7 +84,8 @@
                                 android:id="@+id/recyclerViewToDo"
                                 android:layout_width="300dp"
                                 android:layout_height="495dp"
-                                android:orientation="vertical" />
+                                android:orientation="vertical"
+                                android:padding="15dp"/>
                         </LinearLayout>
                     </FrameLayout>
 
@@ -106,7 +111,9 @@
                                 android:id="@+id/recyclerViewInProgress"
                                 android:layout_width="350dp"
                                 android:layout_height="495dp"
-                                android:orientation="vertical" />
+                                android:orientation="vertical"
+                                android:padding="15dp"/>
+                            />
 
                         </LinearLayout>
                     </FrameLayout>
@@ -133,11 +140,12 @@
                                 android:id="@+id/recyclerViewDone"
                                 android:layout_width="350dp"
                                 android:layout_height="495dp"
-                                android:orientation="vertical" />
+                                android:orientation="vertical"
+                                android:padding="15dp"/>
+                            />
 
                         </LinearLayout>
                     </FrameLayout>
-
                 </LinearLayout>
             </HorizontalScrollView>
         </LinearLayout>

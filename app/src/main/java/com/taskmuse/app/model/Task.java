@@ -1,5 +1,7 @@
 package com.taskmuse.app.model;
 
+import java.util.List;
+
 public class Task {
     private String id;
     private String taskName;
@@ -13,7 +15,8 @@ public class Task {
     public Task() {
     }
 
-    public Task(String taskName, String assignee, String description, String priority, String projectName, String status) {
+    public Task(String id, String taskName, String assignee, String description, String priority, String projectName, String status) {
+        this.id = id;
         this.taskName = taskName;
         this.assignee = assignee;
         this.description = description;
@@ -79,4 +82,3 @@ public class Task {
         this.status = status;
     }
 }
-
