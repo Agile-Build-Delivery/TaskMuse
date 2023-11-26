@@ -18,9 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.task.EditTaskFragment;
 import com.taskmuse.app.model.Task;
 import com.taskmuse.app.utils.TaskAdapter;
@@ -47,6 +51,8 @@ public class dashboard extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
         // Initialize views
         initViews(view);
 
@@ -72,7 +78,9 @@ public class dashboard extends Fragment {
             public void afterTextChanged(Editable editable) {
             }
         });
-
+        } else {
+            showErrorDialog("User Not Found");
+        }
         return view;
     }
 
@@ -127,14 +135,19 @@ public class dashboard extends Fragment {
     private List<Task> filterTasksByName(List<Task> tasks, String query) {
         List<Task> filteredTasks = new ArrayList<>();
         for (Task task : tasks) {
-            String taskName = task.getTaskName().toLowerCase();
-            // Check for various conditions for a match, including partial word matches
-            if (taskName.contains(query) || taskName.startsWith(query) || taskName.endsWith(query)) {
-                filteredTasks.add(task);
+            // Check if taskName is not null before calling toLowerCase()
+            if (task.getTaskName() != null) {
+                String taskName = task.getTaskName().toLowerCase();
+
+                // Check for various conditions for a match, including partial word matches
+                if (taskName.contains(query) || taskName.startsWith(query) || taskName.endsWith(query)) {
+                    filteredTasks.add(task);
+                }
             }
         }
         return filteredTasks;
     }
+
     // Extract tasks from FireStore QuerySnapshot
     private List<Task> extractTasksFromSnapshot(QuerySnapshot snapshot) {
         List<Task> tasks = new ArrayList<>();
@@ -164,18 +177,27 @@ public class dashboard extends Fragment {
 
     // Handle errors during data fetch and show an error dialog
     private void handleFetchError(String errorMessage) {
-        Log.e("FireStore", "Error fetching tasks: " + errorMessage);
-        Toast.makeText(requireContext(), "Error fetching tasks", Toast.LENGTH_SHORT).show();
-        showErrorDialog("Error fetching tasks");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Log.e("Firestore", "Error fetching tasks: " + errorMessage);
+            Toast.makeText(requireContext(), "Error fetching tasks", Toast.LENGTH_SHORT).show();
+            showErrorDialog("Error fetching tasks");}else{
+            Log.d("DashboardFragment: ","USER NOT FOUND/USER LOGGED OUT");
+        }
     }
 
     // Show a dialog with the specified error message
     private void showErrorDialog(String message) {
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Error")
-                .setMessage(message)
-                .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            new AlertDialog.Builder(requireContext())
+                    .setTitle("Error")
+                    .setMessage(message)
+                    .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss())
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }else {
+            Log.d("DashboardFragment: ","USER NOT FOUND/USER LOGGED_OUT");
+        }
     }
 }
