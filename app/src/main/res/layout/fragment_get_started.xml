@@ -10,17 +10,17 @@
 
     <ImageView
         android:id="@+id/login_img"
-        android:layout_width="234dp"
-        android:layout_height="198dp"
+        android:layout_width="279dp"
+        android:layout_height="473dp"
         android:baselineAligned="false"
         android:contentDescription="@string/getStarted"
-        android:src="@drawable/logo_task_muse"
+        android:src="@drawable/logo_task_muse_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        app:layout_constraintVertical_bias="0.771" />
 
     <Button
         android:id="@+id/getStartedButton"
