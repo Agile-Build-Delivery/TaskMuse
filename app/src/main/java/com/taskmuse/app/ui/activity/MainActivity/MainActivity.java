@@ -16,6 +16,7 @@ import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.authentication.Login_Fragment;
 import com.taskmuse.app.ui.fragment.dashboard.dashboard;
 import com.taskmuse.app.ui.fragment.task.AddTaskFragment;
+import com.taskmuse.app.ui.fragment.get_started.GetStartedFragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -93,6 +94,22 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void redirectToDashboard(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, dashboard.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+    }
+    public void redirectToGetStarted(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, GetStartedFragment.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+    }
+    //TODO: Replace dashboard class with add task class when implementing addTask page
+    //For now will redirect to dashboard
+    public void redirectToAddTask(){
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, dashboard.class, null)
                 .setReorderingAllowed(true)

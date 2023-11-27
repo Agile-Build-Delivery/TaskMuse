@@ -16,8 +16,8 @@
             android:id="@+id/action_login_Fragment_to_forgetPasswordNoAccessFragment"
             app:destination="@id/forgetPasswordNoAccessFragment" />
         <action
-            android:id="@+id/action_login_Fragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
+            android:id="@+id/action_login_Fragment_to_dashboard"
+            app:destination="@id/dashboard" />
     </fragment>
 
     <fragment
@@ -25,8 +25,8 @@
         android:name="com.taskmuse.app.ui.fragment.authentication.SignupFragment"
         android:label="SignupFragment" >
         <action
-            android:id="@+id/action_signupFragment_to_login_Fragment"
-            app:destination="@id/login_Fragment" />
+            android:id="@+id/action_signupFragment_to_getStartedFragment"
+            app:destination="@id/getStartedFragment" />
     </fragment>
     <fragment
         android:id="@+id/forgetPasswordNoAccessFragment"
@@ -43,15 +43,34 @@
             app:destination="@id/login_Fragment" />
     </fragment>
     <fragment
-        android:id="@+id/dashboardFragment"
+        android:id="@+id/editTaskFragment"
+        android:name="com.taskmuse.app.ui.fragment.task.EditTaskFragment"
+        android:label="fragment_edit_task"
+        tools:layout="@layout/fragment_edit_task" >
+        <action
+            android:id="@+id/action_editTaskFragment_to_dashboard"
+            app:destination="@id/dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/getStartedFragment"
+        android:name="com.taskmuse.app.ui.fragment.get_started.GetStartedFragment"
+        android:label="fragment_get_started"
+        tools:layout="@layout/fragment_get_started" >
+        <action
+            android:id="@+id/action_getStartedFragment_to_dashboard"
+            app:destination="@id/dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/dashboard"
         android:name="com.taskmuse.app.ui.fragment.dashboard.dashboard"
-        android:label="DashboardFragment">
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
         <action
-            android:id="@+id/action_dashboardFragment_to_login_Fragment"
+            android:id="@+id/action_dashboard_to_editTaskFragment"
+            app:destination="@id/editTaskFragment" />
+        <action
+            android:id="@+id/action_dashboard_to_login_Fragment"
             app:destination="@id/login_Fragment" />
-        <action
-            android:id="@+id/action_dashboardFragment_to_signupFragment"
-            app:destination="@id/signupFragment" />
     </fragment>
 
 
