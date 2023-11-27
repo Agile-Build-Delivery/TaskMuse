@@ -2,10 +2,7 @@ package com.taskmuse.app.ui.fragment.authentication;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -135,9 +131,8 @@ public class SignupFragment extends Fragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO: USE THIS CODE TO MOVE TO GET STARTED PAGE AFTER SUCCESSFUL SIGN UP
                 assert mainActivity != null;
-                mainActivity.alreadyUser();
+                mainActivity.redirectToGetStarted();
             }
         });
 
