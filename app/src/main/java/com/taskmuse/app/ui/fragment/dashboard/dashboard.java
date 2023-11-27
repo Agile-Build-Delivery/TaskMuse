@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -24,6 +25,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.activity.MainActivity.MainActivity;
 import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.task.EditTaskFragment;
 import com.taskmuse.app.model.Task;
@@ -43,6 +45,7 @@ public class dashboard extends Fragment {
     private RecyclerView recyclerViewInProgress;
     private RecyclerView recyclerViewDone;
     private EditText searchEditText;
+    private Button AddTaskButton;
 
     private List<Task> allTasks = new ArrayList<>();
 
@@ -65,6 +68,14 @@ public class dashboard extends Fragment {
         fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone, "");
 
         searchEditText = view.findViewById(R.id.searchEditText);
+        AddTaskButton = view.findViewById(R.id.addTaskButton);
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+
+        AddTaskButton.setOnClickListener(v -> {
+            assert mainActivity != null;
+            mainActivity.redirectToAddTask();
+        });
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
