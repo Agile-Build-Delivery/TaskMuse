@@ -15,6 +15,7 @@ import com.taskmuse.app.ui.fragment.authentication.ForgotPasswordHasAccessFragme
 import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.authentication.Login_Fragment;
 import com.taskmuse.app.ui.fragment.dashboard.dashboard;
+import com.taskmuse.app.ui.fragment.task.AddTaskFragment;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -94,6 +95,14 @@ public class MainActivity extends AppCompatActivity {
     public void redirectToDashboard(){
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmentContainerView, dashboard.class, null)
+                .setReorderingAllowed(true)
+                .addToBackStack(null)
+                .commit();
+    }
+
+    public void redirectToAddTask(){
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainerView, AddTaskFragment.class, null)
                 .setReorderingAllowed(true)
                 .addToBackStack(null)
                 .commit();
