@@ -57,8 +57,8 @@
         android:label="fragment_get_started"
         tools:layout="@layout/fragment_get_started" >
         <action
-            android:id="@+id/action_getStartedFragment_to_dashboard"
-            app:destination="@id/dashboard" />
+            android:id="@+id/action_getStartedFragment_to_addTask"
+            app:destination="@id/addTask" />
     </fragment>
     <fragment
         android:id="@+id/dashboard"
@@ -71,6 +71,18 @@
         <action
             android:id="@+id/action_dashboard_to_login_Fragment"
             app:destination="@id/login_Fragment" />
+        <action
+            android:id="@+id/action_dashboard_to_addTask"
+            app:destination="@id/addTask" />
+    </fragment>
+    <fragment
+        android:id="@+id/addTask"
+        android:name="com.taskmuse.app.ui.fragment.task.AddTaskFragment"
+        android:label="fragment_add_task"
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/addTask_to_dashboard"
+            app:destination="@id/dashboard" />
     </fragment>
 
 

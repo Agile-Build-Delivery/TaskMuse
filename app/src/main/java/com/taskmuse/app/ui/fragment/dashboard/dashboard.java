@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +26,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.taskmuse.app.R;
+import com.taskmuse.app.ui.activity.MainActivity.MainActivity;
 import com.taskmuse.app.ui.fragment.authentication.SignupFragment;
 import com.taskmuse.app.ui.fragment.task.EditTaskFragment;
 import com.taskmuse.app.model.Task;
@@ -81,6 +84,15 @@ public class dashboard extends Fragment {
         } else {
             showErrorDialog("User Not Found");
         }
+        FloatingActionButton AddTaskButton = view.findViewById(R.id.floatingActionButton);
+        AddTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                assert mainActivity != null;
+                mainActivity.redirectToAddTask();
+            }
+        });
         return view;
     }
 
