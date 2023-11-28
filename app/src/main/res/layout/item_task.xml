@@ -8,22 +8,23 @@
     android:baselineAligned="false"
     android:orientation="vertical"
     android:padding="16dp"
+    android:paddingRight="0dp"
     android:textAlignment="center"
     tools:visibility="visible"
-    android:elevation="8dp">
-
+    android:elevation="4dp"
+    android:layout_margin="2dp">
     <TextView
         android:id="@+id/taskNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:text="Task Name"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/assigneeTextView"
         android:layout_width="67dp"
@@ -31,12 +32,11 @@
         android:layout_marginTop="75dp"
         android:layout_marginEnd="8dp"
         android:text="Assignee"
-        android:textColor="#000000"
-        android:textSize="16sp"
-        android:textStyle="bold"
+        android:textColor="#2F80ED"
+        android:textSize="14sp"
+        android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/priorityTextView"
         android:layout_width="66dp"
@@ -49,23 +49,21 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskNameTextView" />
-
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="40dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toBottomOf="@+id/priorityTextView"
         app:srcCompat="@drawable/delete_button" />
-
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="41dp"
         android:layout_height="37dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="0dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
