@@ -39,22 +39,6 @@
             android:paddingEnd="16dp"
             android:paddingBottom="16dp">
 
-            <Button
-                android:id="@+id/addTaskButton"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="169dp"
-                android:layout_height="67dp"
-                android:layout_margin="10sp"
-                android:text="Add Task"
-                android:textColor="@color/md_theme_dark_inversePrimary"
-                android:textSize="21sp"
-                app:backgroundTint="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:rippleColor="?attr/colorOnSurface"
-                app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
-                app:strokeColor="@color/md_theme_dark_inversePrimary" />
-
             <TextView
                 android:id="@+id/addTaskTitle"
                 android:layout_width="match_parent"
@@ -173,6 +157,22 @@
                 android:layout_height="58dp"
                 android:background="@drawable/default_border"
                 android:spinnerMode="dropdown" />
+
+            <Button
+                android:id="@+id/addTaskButton"
+                style="?attr/materialButtonOutlinedStyle"
+                android:layout_width="169dp"
+                android:layout_height="67dp"
+                android:layout_margin="10sp"
+                android:text="Add Task"
+                android:textColor="@color/md_theme_dark_inversePrimary"
+                android:textSize="21sp"
+                app:backgroundTint="@android:color/transparent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:rippleColor="?attr/colorOnSurface"
+                app:shapeAppearance="?attr/shapeAppearanceSmallComponent"
+                app:strokeColor="@color/md_theme_dark_inversePrimary" />
 
         </LinearLayout>
 
