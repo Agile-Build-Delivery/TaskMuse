@@ -38,9 +38,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Task task = taskList.get(position);
 
         // Bind data to the ViewHolder
-        holder.taskNameTextView.setText("Task Name: " + task.getTaskName());
-        holder.assigneeTextView.setText("Assignee: " + task.getAssignee());
-        holder.priorityTextView.setText("Priority: " + task.getPriority());
+        holder.taskNameTextView.setText(task.getTaskName());
+        holder.assigneeTextView.setText(task.getAssignee());
+        holder.priorityTextView.setText(task.getPriority());
 
         // Set click listener for the item
         holder.itemView.setOnClickListener(view -> {
