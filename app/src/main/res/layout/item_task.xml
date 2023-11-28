@@ -8,44 +8,48 @@
     android:baselineAligned="false"
     android:orientation="vertical"
     android:padding="16dp"
-    android:paddingRight="0dp"
     android:textAlignment="center"
     tools:visibility="visible"
     android:elevation="4dp"
     android:layout_margin="2dp">
+
     <TextView
         android:id="@+id/taskNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:fontFamily="@font/nunito_medium"
         android:text="Task Name"
         android:textColor="#000000"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/assigneeTextView"
         android:layout_width="67dp"
         android:layout_height="21dp"
         android:layout_marginTop="75dp"
-        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/nunito_italic"
         android:text="Assignee"
         android:textColor="#2F80ED"
         android:textSize="14sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/priorityTextView"
         android:layout_width="66dp"
         android:layout_height="24dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
+        android:fontFamily="@font/nunito_semi_bold"
         android:text="Priority"
         android:textColor="#000000"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/taskNameTextView" />
