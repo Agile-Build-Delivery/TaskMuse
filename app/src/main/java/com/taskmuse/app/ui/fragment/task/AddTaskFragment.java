@@ -20,12 +20,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.taskmuse.app.R;
 import com.taskmuse.app.model.Task;
 import com.taskmuse.app.ui.activity.MainActivity.MainActivity;
+import com.taskmuse.app.utils.firebaseDatabaseUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -104,10 +103,9 @@ public class AddTaskFragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Create a new task document in Firestore
-            FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference dbTask = db.collection("Tasks");
-                    Task task = new Task(id,taskName, assignee, description, priority, projectName, status);
-                    dbTask.add(task)
+            Task task = new Task(id,taskName, assignee, description, priority, projectName, status);
+            firebaseDatabaseUtils.getFirestoreInstance().collection("Tasks")
+                    .add(task)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentReference> task) {
