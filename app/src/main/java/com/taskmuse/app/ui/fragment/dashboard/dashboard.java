@@ -68,9 +68,6 @@ public class dashboard extends Fragment {
         fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone, "");
 
         searchEditText = view.findViewById(R.id.searchEditText);
-
-
-
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
