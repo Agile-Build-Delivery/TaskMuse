@@ -25,9 +25,6 @@ public class Task {
         this.status = status;
     }
 
-    public Task(String projectName, String taskName, String status, String priority, String description, String taskAssignee) {
-    }
-
     // Getter and Setter methods for all fields, including 'id'
 
     public String getId() {

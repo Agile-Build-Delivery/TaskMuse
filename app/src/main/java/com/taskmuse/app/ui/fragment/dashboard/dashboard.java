@@ -18,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,7 +46,6 @@ public class dashboard extends Fragment {
     private RecyclerView recyclerViewInProgress;
     private RecyclerView recyclerViewDone;
     private EditText searchEditText;
-    private Button AddTaskButton;
 
     private List<Task> allTasks = new ArrayList<>();
 
@@ -68,14 +68,9 @@ public class dashboard extends Fragment {
         fetchAndPopulateTasks(STATUS_DONE, recyclerViewDone, "");
 
         searchEditText = view.findViewById(R.id.searchEditText);
-        AddTaskButton = view.findViewById(R.id.addTaskButton);
 
-        MainActivity mainActivity = (MainActivity) getActivity();
 
-        AddTaskButton.setOnClickListener(v -> {
-            assert mainActivity != null;
-            mainActivity.redirectToAddTask();
-        });
+
         searchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -92,6 +87,15 @@ public class dashboard extends Fragment {
         } else {
             showErrorDialog("User Not Found");
         }
+        FloatingActionButton AddTaskButton = view.findViewById(R.id.floatingActionButton);
+        AddTaskButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity mainActivity = (MainActivity) getActivity();
+                assert mainActivity != null;
+                mainActivity.redirectToAddTask();
+            }
+        });
         return view;
     }
 

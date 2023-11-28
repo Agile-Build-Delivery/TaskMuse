@@ -25,6 +25,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.taskmuse.app.R;
 import com.taskmuse.app.model.Task;
+import com.taskmuse.app.ui.activity.MainActivity.MainActivity;
 
 import java.util.Arrays;
 import java.util.List;
@@ -80,6 +81,7 @@ public class AddTaskFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // Retrieve values from UI elements
+                String id = "";
                 String projectName = projectNameSpinner.getSelectedItem().toString();
                 String taskName = taskNameInput.getText().toString();
                 String status = statusSpinner.getSelectedItem().toString();
@@ -87,31 +89,37 @@ public class AddTaskFragment extends Fragment {
                 String description = descriptionInput.getText().toString();
                 String taskAssignee = taskAssigneeSpinner.getSelectedItem().toString();
 
-                // Perform the logic to add the task in Firestore
-                addTaskToFirestore(projectName, taskName, status, priority, description, taskAssignee);
+                if(projectName.equals("") || taskName.equals("")){
+                    String errorMessage = "Invalid input: Some fields are empty or don't follow the criteria.";
+                    showErrorDialog(errorMessage);
+                } else{
+                    addTaskToFirestore(id, taskName, taskAssignee, description, priority, projectName, status);
+                }
             }
         });
     }
-
+    //String id, String taskName, String assignee, String description, String priority, String projectName, String status
     // Method to add a task to Firestore
-    private void addTaskToFirestore(String projectName, String taskName, String status, String priority, String description, String taskAssignee) {
+    private void addTaskToFirestore(String id, String taskName, String assignee, String description, String priority, String projectName, String status) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             // Create a new task document in Firestore
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            CollectionReference dbTask = db.collection("Task");
-                    Task task = new Task(projectName, taskName, status, priority, description, taskAssignee);
+            CollectionReference dbTask = db.collection("Tasks");
+                    Task task = new Task(id,taskName, assignee, description, priority, projectName, status);
                     dbTask.add(task)
                     .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
                         @Override
                         public void onComplete(@NonNull com.google.android.gms.tasks.Task<DocumentReference> task) {
                             if(task.isSuccessful()){
                                 showSuccessDialog("Task added successfully");
+                                MainActivity mainActivity = (MainActivity) getActivity();
+                                assert mainActivity != null;
+                                mainActivity.redirectToDashboard();
                             }
                             else{
                                 showErrorDialog("Failed to add task");
                             }
-
                         }
                     });
         } else {
@@ -133,6 +141,7 @@ public class AddTaskFragment extends Fragment {
                     })
                     .setIcon(icon)
                     .show();
+
         }else {
             Log.d("AddTaskFragment: ","USER NOT FOUND/USER LOGGED_OUT");
         }
@@ -144,6 +153,7 @@ public class AddTaskFragment extends Fragment {
 
     private void showSuccessDialog(String message) {
         showDialog("Success", message, android.R.drawable.ic_dialog_info);
+
     }
 
     private void showToast(String message) {
